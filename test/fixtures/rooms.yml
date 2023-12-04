@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  name: MyString
+  introduction: MyString
+  fee: 
+  creation_date: 2023-12-04 15:22:13
+  address: MyString
+  prefecture: MyString
+  postcode: MyString
+  city: MyString
+
+two:
+  image: MyString
+  name: MyString
+  introduction: MyString
+  fee: 
+  creation_date: 2023-12-04 15:22:13
+  address: MyString
+  prefecture: MyString
+  postcode: MyString
+  city: MyString
