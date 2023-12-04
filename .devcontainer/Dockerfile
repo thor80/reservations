@@ -6,7 +6,7 @@ RUN su vscode -c "rbenv global 3.0.4"
 RUN su vscode -c "gem install rails -v 6.1.3.2"
 RUN su vscode -c "gem install webdrivers"
 RUN su vscode -c "/usr/local/rvm/bin/rvm fix-permissions"
-RUN su vscode -c "echo eval \"$(rbenv init - zsh)\" >> ~/.zshrc"
+RUN su vscode -c 'echo eval "$(rbenv init - zsh)" >> /home/vscode/.zshrc'
 
 # Default value to allow debug server to serve content over GitHub Codespace's port forwarding service
 # The value is a comma-separated list of allowed domains 

@@ -7,7 +7,7 @@
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {
-			"installZsh": true,
+			"installZsh": false,
 			"configureZshAsDefaultShell": true,
 			"installOhMyZsh": true,
 			"installOhMyZshConfig": true,
@@ -25,8 +25,17 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"Shopify.ruby-extensions-pack"
-			]
+				"Shopify.ruby-extensions-pack",
+				"vscode-icons-team.vscode-icons"
+			],
+			"settings": {
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+					"zsh": {
+						"path": "/bin/zsh"
+					}
+				}
+            }
 		}
 	}
 
