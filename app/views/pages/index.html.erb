@@ -2,5 +2,7 @@
   <h1>Welcome, <%= current_user.name %></h1>
 <% else %>
   <h1>This is the index page</h1>
+  <%= link_to 'Login', login_path %><br>
 <% end %>
+<%=link_to 'Log Out', sessions_path, method: :delete%>
 <%= link_to 'Secret page', '/pages/secret' %>
