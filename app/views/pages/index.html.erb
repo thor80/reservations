@@ -1,8 +1,5 @@
 <% if current_user %>
-  <h1>Welcome, <%= current_user.name %></h1>
+    <h3> Welcome <%= current_user.name %> </h3>
 <% else %>
-  <h1>This is the index page</h1>
-  <%= link_to 'Login', login_path %><br>
+    <h3> Please Register </h3>
 <% end %>
-<%=link_to 'Log Out', sessions_path, method: :delete%>
-<%= link_to 'Secret page', '/pages/secret' %>
