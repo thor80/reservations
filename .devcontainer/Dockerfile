@@ -14,7 +14,11 @@ ENV RAILS_DEVELOPMENT_HOSTS=".githubpreview.dev,.preview.app.github.dev,.app.git
 
 # [Optional] Uncomment this section to install additional OS packages.
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends nodejs
+    && apt-get -y install --no-install-recommends curl \
+    && curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - \
+    && apt-get update \
+    && apt-get -y upgrade \
+    && apt-get -y install nodejs
 
 # [Optional] Uncomment this line to install additional gems.
 # RUN su vscode -c "gem install <your-gem-names-here>"
