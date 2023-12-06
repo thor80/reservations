@@ -39,4 +39,4 @@
 yarn-debug.log*
 .yarn-integrity
 
-puiblic/uploaded
+public/uploads
