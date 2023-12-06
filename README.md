@@ -6,19 +6,29 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-
-* System dependencies
-
-* Configuration
+  
+  3.0.4
 
 * Database creation
 
-* Database initialization
+  To delete database
+    ```sh
+    rails db:drop
+    ```
+  To create database
+    ```sh
+    rails db:migrate
+    ```
 
-* How to run the test suite
+* Before running the server for first time
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    ```sh
+    rails assets:clobber
+    bundle install
+    yarn install
+    rails server
+    ```
+* Files that are upload on the profile are stored in 
+    ```sh
+    app/public/uploads/{id_user}/name_of_the_image.jpg
+    ```

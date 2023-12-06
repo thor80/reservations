@@ -3,6 +3,7 @@ class UserSessionsController < ApplicationController
     @user = User.new
   end
 
+  # When user login, and password is right, then we store it in session
   def create
     @user = User.find_by(email: params[:user][:email])
 
@@ -15,6 +16,7 @@ class UserSessionsController < ApplicationController
     end
   end
 
+  # To log out the user, we simply remove user from session cleaning it
   def destroy
     session.clear
     redirect_to login_path

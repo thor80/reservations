@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  # Declaring here method as helper method, makes it available in every controller, so we can use it in any controller
   helper_method :current_user
 
   def current_user
