@@ -16,9 +16,9 @@ Rails.application.routes.draw do
   patch '/edit_password', to: 'users#update_password'
 
   # Here is the link to send the user to the profile edition page
-  get '/edit_profile', to: 'users#edit_profile'
+  get '/profile/:id', to: 'users#edit_profile', as: 'profile'
   # Here is the link to update the user profile and send him to index page.
-  patch '/edit_profile', to: 'users#update_profile'
+  patch '/profile/:id', to: 'users#update_profile', as: 'edit_profile'
 
   # Here are the links to go to new user form, and to create user.
   get '/users/new', to: 'users#new'

@@ -62,24 +62,7 @@ class UsersController < ApplicationController
 
     @user = current_user
 
-    @user.name = user_profile_params[:name]
-    @user.introduction = user_profile_params[:introduction]
-
-    icon_io = user_profile_params[:icon]
-    icon_path = nil
-    if icon_io
-      icon_io.original_filename
-      icon_path = Rails.root.join('public', 'uploads', @user.id.to_s, icon_io.original_filename)
-      icon_path_resource = 'uploads/' + @user.id.to_s + "/" + icon_io.original_filename
-    end
-
-    if @user.update(name: user_profile_params[:name], introduction: user_profile_params[:introduction], icon: icon_path_resource)
-      if icon_path
-        FileUtils.mkdir_p Rails.root.join('public', 'uploads', @user.id.to_s)
-        File.open(icon_path, 'wb') do |file|
-          file.write(icon_io.read)
-        end
-      end
+    if @user.update(user_profile_params)
       redirect_to root_path, notice: 'Profile was successfully updated.'
     else
       flash[:alert] = "Profile hasn't been updated"
@@ -102,7 +85,7 @@ class UsersController < ApplicationController
 
   # To change user profile we need this parameters
   def user_profile_params
-    params.require(:user).permit(:name, :introduction, :icon)
+    params.require(:user).permit(:name, :introduction, :image)
   end
 
 end
