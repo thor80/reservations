@@ -17,27 +17,27 @@
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   <% if current_user.image.attached? %>
-                    <%= image_tag url_for(current_user.image), style: 'width:30px' %> <%= current_user.name %>
+                    <%= image_tag url_for(current_user.image), style: 'width:30px', data: { turbolinks: false } %> <%= current_user.name %>
                   <% else %>
-                    <img src="default_profile.jpg" width="30" /> <%= current_user.name %>
+                    <img src="/default_profile.jpg" width="30" /> <%= current_user.name %>
                   <% end %>
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><%= link_to 'Change Profile', profile_path(current_user.id), class: "dropdown-item" %></li>
-                <li><%= link_to 'Change Password', edit_password_path, class: "dropdown-item" %></li>
-                <li><%= link_to 'Log Out', sessions_path, method: :delete, class: "dropdown-item" %></li>
+                <li><%= link_to 'Change Profile', profile_path(current_user.id), class: "dropdown-item", data: { turbolinks: false } %></li>
+                <li><%= link_to 'Change Password', edit_password_path, class: "dropdown-item", data: { turbolinks: false } %></li>
+                <li><%= link_to 'Log Out', sessions_path, method: :delete, class: "dropdown-item", data: { turbolinks: false } %></li>
               </div>
             </div>
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                  <%= link_to 'My Rooms', user_rooms_path(current_user.id), class: "nav-link"%>
+                  <%= link_to 'My Rooms', user_rooms_path(current_user.id), class: "nav-link", data: { turbolinks: false } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'Room Search', url_for( '#' ), class: "nav-link" %>
+                  <%= link_to 'Room Search', url_for( '#' ), class: "nav-link", data: { turbolinks: false } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'My Reservations', url_for( '#' ), class: "nav-link" %>
+                  <%= link_to 'My Reservations', url_for( '#' ), class: "nav-link", data: { turbolinks: false }  %>
                 </li>
               </ul>
             </div>

@@ -7,6 +7,10 @@ class RoomController < ApplicationController
     end
   end
 
+  def view
+    @room = Room.find(params[:room_id])
+  end
+
   def new
     @room = Room.new
   end
@@ -18,7 +22,7 @@ class RoomController < ApplicationController
 
       if @room.save
         flash[:notice] = "Room created successfully"
-        redirect_to user_rooms(current_user.id)
+        redirect_to user_rooms_path(current_user.id)
       else
         flash[:alert] = "Room not created"
         render :new, status: :unprocessable_entity

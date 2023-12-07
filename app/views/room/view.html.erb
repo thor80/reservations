@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <% if @room.image.attached? %>
+                <%= image_tag url_for(@room.image), class: 'card-img-top' %>
+            <% else %>
+                <img src="/default_room.jpg" class="card-img-top" />
+            <% end %>
+            <div class="card-body">
+                <h5 class="card-title"><%= @room.name %></h5>
+                <p class="card-text"><%= @room.introduction %></p>
+            </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Address: <%= @room.address %></li>
+                    <li class="list-group-item">Postcode: <%= @room.postcode %></li>
+                    <li class="list-group-item">City: <%= @room.city %></li>
+                    <li class="list-group-item">Prefecture: <%= @room.prefecture %></li>
+                    <li class="list-group-item">Fee: <%= @room.fee %></li>
+                    <li class="list-group-item">Created at: <%= @room.created_at.strftime("%F") %></li>
+                </ul>
+            <div class="card-body">
+                <a href="<%= user_rooms_path(current_user.id) %>" class="card-link">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
