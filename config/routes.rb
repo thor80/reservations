@@ -24,4 +24,10 @@ Rails.application.routes.draw do
   get '/users/new', to: 'users#new'
   post '/users/new', to: 'users#create'
 
+  # Room roots
+  get '/user/:id/rooms', to: 'room#index', as: 'user_rooms'
+  get '/rooms/new', to: 'room#new'
+  post '/rooms', to: 'room#create', as: 'create_room'
+  patch '/rooms/:id', to: 'room#edit', as: 'edit_room'
+
 end
