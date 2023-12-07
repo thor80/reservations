@@ -5,9 +5,6 @@ class CreateRooms < ActiveRecord::Migration[6.1]
       t.string :introduction
       t.integer :fee
       t.string :address
-      t.string :prefecture
-      t.string :postcode
-      t.string :city
       t.references :user, index: true, foreign_key: true
 
       t.timestamps
