@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   # Room roots
   get '/user/:id/rooms', to: 'room#index', as: 'user_rooms'
+  get '/user/:id/rooms/:room_id', to: 'room#view', as: 'view_user_room'
   get '/rooms/new', to: 'room#new'
   post '/rooms', to: 'room#create', as: 'create_room'
   patch '/rooms/:id', to: 'room#edit', as: 'edit_room'
