@@ -12,7 +12,7 @@ class Room < ApplicationRecord
   private
 
   def validate_fee
-    if fee && fee <= 1
+    if fee && fee < 1
       errors.add(:fee, 'must be greater than 1')
     end
   end

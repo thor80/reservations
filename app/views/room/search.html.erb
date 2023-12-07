@@ -46,14 +46,17 @@
     </div>
     <% if @rooms %>
         <div class="row mt-2 row-cols-1 gy-2 justify-content-center">
+            <h5><strong>Search results: <%= @rooms.length() %></strong</h5>
+        </div>
+        <div class="row mt-2 row-cols-1 gy-2 justify-content-center">
             <% @rooms.each do |room| %>
                 <div class="col-13 card md-6">
                     <div class="row">
                         <div class="col-md-4">
                             <% if room.image.attached? %>
-                                <%= image_tag url_for(room.image), class: 'img-fluid rounded-start', data: { turbolinks: false } %>
+                                <%= image_tag url_for(room.image), class: 'img-fluid rounded-start', data: { turbolinks: false }, :style => "max-height:400px; object-fit: contain;" %>
                             <% else %>
-                                <img src="/default_room.jpg" class="img-fluid rounded-start" />
+                                <img src="/default_room.jpg" class="img-fluid rounded-start" style="max-height:400px; object-fit: contain;" />
                             <% end %>
                         </div>
                         <div class="col-md-8">
@@ -64,6 +67,9 @@
                                 <p class="card-text"><small class="text-muted"><%= room.fee %></small></p>
                                 <p class="card-text"><small class="text-muted"><%= room.created_at.strftime("%F") %></small></p>
                             </div>
+                        </div>
+                        <div class="col-md-8">
+                            <%= link_to 'Do Reservation', new_reservation_path(room.id), data: { turbolinks: false }, class: 'btn btn-primary' %>
                         </div>
                     </div>
                 </div>

@@ -37,7 +37,7 @@
                   <%= link_to 'Room Search', search_room_path, class: "nav-link", data: { turbolinks: false } %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to 'My Reservations', url_for( '#' ), class: "nav-link", data: { turbolinks: false }  %>
+                  <%= link_to 'My Reservations', list_user_reservations_path(current_user.id), class: "nav-link", data: { turbolinks: false }  %>
                 </li>
               </ul>
             </div>

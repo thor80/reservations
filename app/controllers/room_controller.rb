@@ -41,25 +41,34 @@ class RoomController < ApplicationController
 
   def search
     if current_user
-      where_sentences = []
+      area_where_sentences = []
+      free_text_where_sentences = []
       text_search = params[:text_search]
       areas = params[:areas]
 
 
       if areas
         for area in areas
-          where_sentences << "lower(address) like '%" + area.downcase + "%'"
+          area_where_sentences << "lower(address) like '%" + area.downcase + "%'"
         end
       end
 
       if text_search
         for word in text_search.split(/\W+/)
-          where_sentences << "lower(name) like '%" + word.downcase + "%' or lower(introduction) like '%" + word.downcase + "%'"
+          free_text_where_sentences << "lower(name) like '%" + word.downcase + "%' or lower(introduction) like '%" + word.downcase + "%'"
         end
       end
 
-      conditions = where_sentences.join(" or ")
-      if where_sentences.length() > 0
+      conditions = nil
+      if area_where_sentences.length() > 0 && free_text_where_sentences.length() > 0
+        conditions = "(" + area_where_sentences.join(" or ") + ") and (" + free_text_where_sentences.join(" or ") + ")"
+      elsif area_where_sentences.length() > 0
+        conditions = area_where_sentences.join(" or ")
+      elsif free_text_where_sentences.length() > 0
+          conditions = free_text_where_sentences.join(" or ")
+      end
+
+      if conditions
         @rooms = Room.where(conditions)
       end
 
