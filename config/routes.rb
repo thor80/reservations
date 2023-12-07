@@ -26,9 +26,17 @@ Rails.application.routes.draw do
 
   # Room roots
   get '/user/:id/rooms', to: 'room#index', as: 'user_rooms'
+  # Room View
   get '/user/:id/rooms/:room_id', to: 'room#view', as: 'view_user_room'
+  # Show room create form
   get '/rooms/new', to: 'room#new'
+  # Submit room to be created
   post '/rooms', to: 'room#create', as: 'create_room'
+  # To Edit room
   patch '/rooms/:id', to: 'room#edit', as: 'edit_room'
+  # Show Search room form
+  get '/rooms/search', to: 'room#search', as: 'search_room'
+  get '/rooms/search/:id', to: 'room#details', as: 'view_room'
+
 
 end

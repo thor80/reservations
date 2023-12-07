@@ -39,10 +39,59 @@ class RoomController < ApplicationController
     end
   end
 
+  def search
+    if current_user
+      where_sentences = []
+      text_search = params[:text_search]
+      areas = params[:areas]
+
+
+      if areas
+        for area in areas
+          where_sentences << "lower(address) like '%" + area.downcase + "%'"
+        end
+      end
+
+      if text_search
+        for word in text_search.split(/\W+/)
+          where_sentences << "lower(name) like '%" + word.downcase + "%' or lower(introduction) like '%" + word.downcase + "%'"
+        end
+      end
+
+      conditions = where_sentences.join(" or ")
+      if where_sentences.length() > 0
+        @rooms = Room.where(conditions)
+      end
+
+      @text_search = text_search
+      @areas = areas
+      @conditions = conditions
+
+    else
+      redirect_to root_path
+    end
+  end
+
+  def details
+    if current_user
+      @room = Room.find(params[:id])
+    else
+      redirect_to root_path
+    end
+  end
+
   private
 
   def room_params
-    params.require(:room).permit(:name, :introduction, :fee, :address, :prefecture, :postcode, :city, :image)
+    params.require(:room).permit(:name, :introduction, :address, :fee, :image)
+  end
+
+  def search_params
+    params.permit(:text_search, :areas)
+  end
+
+  def view_room_params
+    params.permit(:id)
   end
 
 end

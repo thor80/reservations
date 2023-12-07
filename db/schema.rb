@@ -53,14 +53,10 @@ ActiveRecord::Schema.define(version: 2023_12_07_021500) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "image"
     t.string "name"
     t.string "introduction"
     t.integer "fee"
     t.string "address"
-    t.string "prefecture"
-    t.string "postcode"
-    t.string "city"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -1,6 +1,7 @@
 class Room < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
+  validates :address, presence: true
   validates :fee, presence: true
   validate :validate_fee
 
