@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row mt-2 row-cols-1 gy-2 justify-content-center">
+        <% @reservations.each do |reservation| %>
+            <div class="col-13 card md-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <% if reservation.room.image.attached? %>
+                            <%= image_tag url_for(reservation.room.image), class: 'card-img-top', data: { turbolinks: false }, :style => "max-height:400px; object-fit: contain;" %>
+                        <% else %>
+                            <img src="/default_room.jpg" class="img-fluid rounded-start" style="max-height:400px; object-fit: contain;" />
+                        <% end %>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h2 class="card-title">Facility Name: <%= reservation.room.name %></h2>
+                            <p class="card-text">Introduction: <%= reservation.room.introduction %></p>
+                            <p class="card-text">Total Fee: <%= (reservation.check_out - reservation.check_in).to_i * reservation.people * reservation.room.fee %></small></p>
+                            <p class="card-text">Check-in: <small class="text-muted"><%= reservation.check_in.strftime("%F") %></small></p>
+                            <p class="card-text">Check-out: <small class="text-muted"><%= reservation.check_out.strftime("%F") %></small></p>
+                            <p class="card-text">Confirmation Date: <small class="text-muted"><%= reservation.created_at.strftime("%F %T") %></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>

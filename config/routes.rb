@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get '/user/:id/rooms', to: 'room#index', as: 'user_rooms'
   # Room View
   get '/user/:id/rooms/:room_id', to: 'room#view', as: 'view_user_room'
+
   # Show room create form
   get '/rooms/new', to: 'room#new'
   # Submit room to be created
@@ -38,5 +39,11 @@ Rails.application.routes.draw do
   get '/rooms/search', to: 'room#search', as: 'search_room'
   get '/rooms/search/:id', to: 'room#details', as: 'view_room'
 
+  # Reservations list
+  get '/user/:id/reservations', to: 'reservations#index', as: 'list_user_reservations'
+  # New reservation for room
+  get '/reservations/room/:room_id', to: 'reservations#new', as: 'new_reservation'
+  # Create reservation
+  post '/reservation/room/:room_id/create', to: 'reservations#create', as: 'create_reservation'
 
 end

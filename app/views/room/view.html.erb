@@ -3,9 +3,9 @@
     <div class="col-md-6">
         <div class="card">
             <% if @room.image.attached? %>
-                <%= image_tag url_for(@room.image), class: 'card-img-top' %>
+                <%= image_tag url_for(@room.image), class: 'card-img-top', data: { turbolinks: false }, :style => "max-height:400px; object-fit: contain;" %>
             <% else %>
-                <img src="/default_room.jpg" class="card-img-top" />
+                <img src="/default_room.jpg" class="card-img-top" style="max-height:400px; object-fit: contain;"/>
             <% end %>
             <div class="card-body">
                 <h5 class="card-title"><%= @room.name %></h5>

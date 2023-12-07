@@ -1,0 +1,54 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h3>Reservation</h3>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <% if @room.image.attached? %>
+                    <%= image_tag url_for(@room.image), class: 'card-img-top', data: { turbolinks: false }, :style => "max-height:400px; object-fit: contain;" %>
+                <% else %>
+                    <img src="/default_room.jpg" class="card-img-top" style="max-width: 100px; max-height: 100px; object-fit: contain;"/>
+                <% end %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= @room.name %></h5>
+                    <p class="card-text"><%= @room.introduction %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-8">
+            <h2 class="mb-4">Change Password</h2>
+            <%= form_with model: @reservation, :url => create_reservation_path(@room.id) do |f| %>
+                <% if @reservation.errors.any? %>
+                    <div class="mb-3">
+                        <ul>
+                        <% @reservation.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                    </div>
+                <% end %>
+                <div class="col-md-6">
+                    <label for="checkin" class="form-label">Check In</label>
+                    <%= f.date_field :check_in, class: "form-control", id: "checkin"  %>
+                </div>
+                <div class="col-md-6">
+                    <label for="checkout" class="form-label">Check Out</label>
+                    <%= f.date_field :check_out, class: "form-control", id: "checkout"  %>
+                </div>
+                <div class="col-md-6">
+                    <label for="people" class="form-label">People</label>
+                    <%= f.number_field :people, class: "form-control", id: "people"  %>
+                </div>
+                <div class="col-md-6">
+                    <%= f.submit 'Save', class: "btn btn-primary" %>
+                </div>
+                <input type="hidden" id="roomId" name="room_id" value="<%= @room.id %>" />
+            <% end %>
+        </div>
+    </div>
+</div>
