@@ -1,7 +1,7 @@
 class ReservationsController < ApplicationController
   def index
     if current_user
-      @reservations = Reservation.all
+      @reservations = current_user.reservations
     else
       redirect_to root_path
     end
